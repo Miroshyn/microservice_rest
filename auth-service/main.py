@@ -10,14 +10,12 @@ USERS = {
 }
 
 @app.get("/login")
-async def login(email: str, password: str, response: Response):
+async def login(email: str, password: str):
     user = USERS.get(email)
     if not user or user["password"] != password:
-        return JSONResponse({"message": "invalid credentials"}, status_code=200)
+        return JSONResponse({"message": "invalid credentials"}, status_code=401)  # замість 200
 
-    # TOKЕН спрощений (НЕ використовуйте так у проді!)
     token = f"fake-token-for-{email}"
-
     return {"accessToken": token, "userId": user["id"]}
 
 @app.get("/whoami")
