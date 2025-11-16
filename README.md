@@ -24,8 +24,10 @@
 
 1. Встановіть **Docker** та **Docker Compose**.  
 2. У корені проєкту виконайте:
-```bash
+```
+bash
 docker compose up --build
+```
 
 ---
 
