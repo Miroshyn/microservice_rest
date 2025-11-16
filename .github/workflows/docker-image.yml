@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "*" ]
 
 jobs:
   test:
@@ -18,8 +18,11 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Build and start services
-        run: docker compose up -d --build --force-recreate --no-cache
+      - name: Build services without cache
+        run: docker compose build --no-cache
+
+      - name: Start services
+        run: docker compose up -d --force-recreate
 
       - name: Wait for services
         run: |
