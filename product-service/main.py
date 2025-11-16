@@ -29,4 +29,4 @@ async def get_product(pid: int):
         if p["product_id"] == pid:
             p["price"] = float(p["price"])  # Перетворюємо рядок у float
             return p
-    return JSONResponse({"message": "not found"}, status_code=404)
+    return JSONResponse({"message": "not found"}, status_code=404)  # Замість 200
