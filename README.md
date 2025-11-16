@@ -27,7 +27,7 @@
 
 ## Структура репозиторію
 
-microservice-rest/
+```microservice-rest/
 ├─ docker-compose.yml
 ├─ README.md
 ├─ auth-service/
@@ -42,3 +42,4 @@ microservice-rest/
    ├─ Dockerfile
    ├─ requirements.txt
    └─ main.py
+```
