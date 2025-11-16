@@ -22,7 +22,13 @@ jobs:
         run: docker compose up -d --build
 
       - name: Wait for services
-        run: sleep 10
+        run: |
+          echo "Waiting for auth-service..."
+          until curl -s http://localhost:8001/health; do sleep 2; done
+          echo "Waiting for product-service..."
+          until curl -s http://localhost:8002/health; do sleep 2; done
+          echo "Waiting for order-service..."
+          until curl -s http://localhost:8003/health; do sleep 2; done
 
       - name: Install test dependencies
         run: |
