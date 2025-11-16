@@ -11,7 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Merge latest main
+        run: |
+          git fetch origin main
+          git merge origin/main --no-edit || echo "Merge conflicts, resolve manually"
 
       - name: Set up Python
         uses: actions/setup-python@v4
