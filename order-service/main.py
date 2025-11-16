@@ -12,17 +12,25 @@ ORDERS: list[dict] = []
 
 @app.post("/orders")
 async def create_order(payload: dict, authorization: str | None = Header(default=None)):
-    """
-    Очікуваний payload: {"productId": int, "qty": int}
-    """
-    # (Намагаємось) перевірити токен
+    # Перевірка токена
     async with httpx.AsyncClient() as client:
-        _ = await client.get(f"{AUTH_URL}/whoami", headers={"Authorization": authorization or ""})
+        r = await client.get(f"{AUTH_URL}/whoami", headers={"Authorization": authorization or ""})
+        if r.status_code != 200:
+            return JSONResponse({"error": "unauthorized"}, status_code=401)
+
+    product_id = payload.get("productId")
+    qty = payload.get("qty")
+
+    # Перевірка наявності товару
+    async with httpx.AsyncClient() as client:
+        prod = await client.get(f"{PRODUCT_URL}/products/{product_id}")
+        if prod.status_code != 200 or prod.json()["inStock"] < qty:
+            return JSONResponse({"error": "insufficient stock"}, status_code=400)
 
     order = {
         "order_id": len(ORDERS) + 1,
-        "product_id": payload.get("productId"),
-        "quantity": payload.get("qty"),
+        "product_id": product_id,
+        "quantity": qty,
         "status": "created",
     }
     ORDERS.append(order)
