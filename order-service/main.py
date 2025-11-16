@@ -5,8 +5,8 @@ import httpx
 
 app = FastAPI(title="OrderService")
 
-AUTH_URL = os.getenv("AUTH_URL", "http://localhost:8001")
-PRODUCT_URL = os.getenv("PRODUCT_URL", "http://localhost:8002")
+AUTH_URL = os.getenv("AUTH_URL", "http://auth-service:8001")
+PRODUCT_URL = os.getenv("PRODUCT_URL", "http://product-service:8002")
 
 ORDERS: list[dict] = []
 
