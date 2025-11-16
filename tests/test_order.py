@@ -15,7 +15,7 @@ async def test_create_order_insufficient_stock():
             "password": "alice123"
         })
         assert login_resp.status_code == 200, f"Login failed: {login_resp.text}"
-        token = login_resp.json()["accessToken"]  # ключ як у auth-service
+        token = login_resp.json()["accessToken"]
 
         # Створення замовлення з кількістю більше за наявну
         r = await client.post(
