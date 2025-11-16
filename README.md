@@ -1,2 +1,7 @@
-# microservice_rest
-A simple REST microservice system for individual assignment, including intentional bugs, unit tests with pytest, and fixes for demonstration.
+# Індивідуальне завдання. Мікросервісна система REST
+
+Цей репозиторій містить навчальний проєкт — просту мікросервісну систему REST, яка включає:
+
+- **Початковий код сервісу** з навмисними помилками (`app/service.py`).
+- **Модульні тести** на `pytest` для виявлення помилок (`tests/`).
+- **Приклади виправлень** та інструкції для демонстрації.
