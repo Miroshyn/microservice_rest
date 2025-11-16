@@ -19,7 +19,7 @@ jobs:
           python-version: 3.11
 
       - name: Build and start services
-        run: docker compose up -d --build
+        run: docker compose up -d --build --force-recreate --no-cache
 
       - name: Wait for services
         run: |
@@ -37,6 +37,5 @@ jobs:
 
       - name: Run tests
         run: pytest -q
-
       - name: Shutdown services
         run: docker compose down
