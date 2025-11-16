@@ -3,7 +3,6 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI(title="AuthService")
 
-# Простеньке "сховище" користувачів у пам'яті (для навчальних цілей)
 USERS = {
     "alice@example.com": {"password": "alice123", "id": 1},
     "bob@example.com": {"password": "bob123", "id": 2},
