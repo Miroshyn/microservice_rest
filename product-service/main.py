@@ -18,4 +18,4 @@ async def get_product(pid: int):
     for p in PRODUCTS:
         if p["product_id"] == pid:
             return p
-    return JSONResponse({"message": "not found"}, status_code=200)
+    return JSONResponse({"message": "not found"}, status_code=404)  # Замість 200
